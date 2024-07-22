@@ -1,0 +1,45 @@
+@import '../style/variables.scss';
+
+main.home {
+  height: calc(100svh - $header_height);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+
+  .section_container {
+    display: flex;
+    flex-grow: 1;
+    width: 100%;
+
+    .home_left {
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      transition: filter 0.2s ease-out, background-color 0.2s ease-out;
+      font-size: 16px;
+    }
+
+    .home_right {
+      display: flex;
+      flex-grow: 1;
+      width: calc(100% - 250px);
+
+      .editor {
+        flex-grow: 1;
+        display: grid;
+        place-items: center;
+        transition: filter 0.2s ease-out, background-color 0.2s ease-out;
+        font-size: 16px;
+      }
+
+      .tabs {
+        flex-shrink: 0;
+        display: grid;
+        place-items: center;
+        transition: filter 0.2s ease-out, background-color 0.2s ease-out;
+        font-size: 16px;
+      }
+    }
+  }
+}

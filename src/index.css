@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Playwrite+PE:wght@100..400&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&family=Playwrite+PE:wght@100..400&display=swap');
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary_bg: #151515;
+    --secondary_bg: #1f1f1f;
+    --secondary_hover_bg: #2d2d2d;
+    --primary_gray: #343434;
+    --secondary_gray: #505050;
+    --dark_text: #ffffff;
+    --light_text: #aaafb5;
+    --selection_text: #57d7bc;
+    --selection_bg: #082321;
+    --folder_bg: #6bc7f6;
+    --primary_red: #FF453A;
+    --secondary_red: #ff6a61;
+  }
+}
+
+:root[theme='dark'] {
+  --primary_bg: #151515;
+  --secondary_bg: #1f1f1f;
+  --secondary_hover_bg: #2d2d2d;
+  --primary_gray: #343434;
+  --secondary_gray: #505050;
+  --dark_text: #ffffff;
+  --light_text: #aaafb5;
+  --selection_text: #57d7bc;
+  --selection_bg: #082321;
+  --folder_bg: #6bc7f6;
+  --primary_red: #FF453A;
+  --secondary_red: #ff6a61;
+}
+
+:root[theme='light'] {
+  --primary_bg: #f4f4f4;
+  --secondary_bg: #efefef;
+  --secondary_hover_bg: #d9d9d9;
+  --primary_gray: #a8a8a8;
+  --secondary_gray: #929292;
+  --dark_text: #000000;
+  --light_text: #2c3e50;
+  --selection_text: #135043;
+  --selection_bg: #082321;
+  --folder_bg: #6bc7f6;
+  --primary_red: #FF453A;
+  --secondary_red: #ff6a61;
+}

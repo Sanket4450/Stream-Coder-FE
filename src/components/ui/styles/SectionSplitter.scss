@@ -1,0 +1,20 @@
+@import '../../../style/variables.scss';
+
+.drag_bar {
+  flex-shrink: 0;
+  width: 4px;
+  background-color: $bg_secondary;
+  cursor: col-resize;
+  transition: background-color 0.15s 0.15s ease-in-out;
+
+  .drag_bar_dragging,
+  &:hover {
+    background-color: $primary_gray;
+  }
+
+  .drag_bar_horizontal {
+    height: 5px;
+    width: 100%;
+    cursor: row-resize;
+  }
+}

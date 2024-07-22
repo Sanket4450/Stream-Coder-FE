@@ -1,0 +1,83 @@
+@import '../../../../style/variables.scss';
+
+aside.file_manager_section {
+  height: 100%;
+  width: 100%;
+  position: relative;
+
+  .files_section {
+    width: 100%;
+    user-select: none;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    .editing {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border-bottom: 0.5px solid $secondary_gray;
+      padding: 8px 16px;
+
+      .folder_icon {
+        font-size: 14px;
+        color: $folder_bg;
+      }
+
+      .edit_input {
+        background-color: inherit;
+        color: $dark_text;
+        padding: 4px;
+        border: 1px solid $primary_gray;
+        border-radius: 2px;
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      border-bottom: 0.5px solid $secondary_gray;
+
+      &:hover {
+        background-color: $primary_gray;
+      }
+
+      .files_section_left {
+        display: flex;
+        flex-grow: 1;
+        gap: 5px;
+        padding: 8px 0 8px 12px;
+
+        .files_arrow {
+          align-self: center;
+        }
+
+        .files_title {
+          color: $dark_text;
+          margin: 0;
+        }
+      }
+
+      .files_section_right {
+        display: flex;
+        justify-content: flex-end;
+        padding: 8px 12px 8px 0;
+
+        .icon {
+          font-size: 14px;
+          padding-left: 10px;
+
+          &:hover {
+            cursor: pointer;
+            color: $dark_text;
+          }
+        }
+      }
+    }
+  }
+}

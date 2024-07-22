@@ -1,0 +1,22 @@
+body {
+  overscroll-behavior-y: none;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  background-color: var(--primary_bg);
+  color: var(--light_text);
+
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+}
+
+::selection {
+  background-color: var(--selection_bg);
+  color: var(--selection_text);
+}
+
+button {
+  user-select: none;
+}

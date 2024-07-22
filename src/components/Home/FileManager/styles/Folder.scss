@@ -1,0 +1,49 @@
+@import '../../../../style/variables.scss';
+
+.folder {
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $primary_gray;
+      color: $dark_text;
+    }
+
+    .folder_left {
+      display: flex;
+      gap: 8px;
+
+      .folder_icon {
+        color: $folder_bg;
+        font-size: 15px;
+      }
+
+      .name {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 300;
+      }
+    }
+
+    .folder_right {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+
+      .icon {
+        font-size: 14px;
+        color: $light_text;
+
+        &:hover {
+          cursor: pointer;
+          color: $dark_text;
+        }
+      }
+    }
+  }
+}

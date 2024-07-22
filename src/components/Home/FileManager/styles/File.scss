@@ -1,0 +1,43 @@
+@import '../../../../style/variables.scss';
+
+.file {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &:hover {
+    cursor: pointer;
+    background-color: $primary_gray;
+    color: $dark_text;
+  }
+
+  .file_left {
+    display: flex;
+    flex-grow: 1;
+    gap: 8px;
+    padding: 8px 0;
+
+    .name {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 300;
+    }
+  }
+
+  .file_right {
+    display: flex;
+    justify-content: flex-end;
+    padding: 8px 12px 8px 0;
+
+    .icon {
+      padding-left: 10px;
+      font-size: 16px;
+      color: $light_text;
+
+      &:hover {
+        cursor: pointer;
+        color: $dark_text;
+      }
+    }
+  }
+}
