@@ -5,9 +5,14 @@ import { FaFile, FaFolder, FaFolderOpen } from 'react-icons/fa6'
 
 // local imports
 import './styles/Folder.scss'
-import { FolderType } from '../../../interfaces/common'
+import { AddChildFileType, FolderType } from '../../../interfaces/file'
 import { File } from './File'
 import { CONSTANTS } from '../../../helper/constants'
+import { useAppDispatch } from '../../../hooks/redux'
+import { openDeleteFileModal } from '../../../store/slices/modal'
+import { FileLogo } from '../../ui/FileLogo'
+import { useAddFileMutation } from '../../../api/file'
+import { MSG } from '../../../helper/messages'
 
 export const Folder: FC<{
   folder: FolderType
@@ -15,8 +20,15 @@ export const Folder: FC<{
   unsplit: boolean
   setUnsplit: Dispatch<SetStateAction<boolean>>
 }> = ({ folder, indent, unsplit, setUnsplit }) => {
+  const [editing, setEditing] = useState<{ type: null | string }>({ type: null })
   const [isHovered, setIsHovered] = useState<boolean>(false)
   const [isOpen, setIsOpen] = useState<boolean>(false)
+  const [fileName, setFileName] = useState<string>('')
+  const [folderName, setFolderName] = useState<string>('')
+
+  const [addFileApi] = useAddFileMutation()
+
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
     isOpen && setUnsplit(false)
@@ -36,6 +48,71 @@ export const Folder: FC<{
 
   const handleMoustOut = () => {
     setIsHovered(false)
+  }
+
+  const addFileOrFolder = async (data: AddChildFileType) => {
+    try {
+      const response = await addFileApi(data)
+      console.log(response)
+
+      if (response.data?.success === CONSTANTS.SUCCESS_TRUE) {
+        console.log('file added successfully')
+      } else {
+        console.log(MSG.SOMETHING_WENT_WRONG)
+      }
+    } catch (error: any) {
+      console.log(MSG.SOMETHING_WENT_WRONG)
+    }
+  }
+
+  const openFileInput = (e: any) => {
+    e.stopPropagation()
+    setIsOpen(true)
+    setEditing({ type: CONSTANTS.FILE_VALUE })
+  }
+
+  const openFolderInput = (e: any) => {
+    e.stopPropagation()
+    setIsOpen(true)
+    setEditing({ type: CONSTANTS.FOLDER_VALUE })
+  }
+
+  const handleFileName = (e: any) => {
+    setFileName(e.target.value.trim())
+  }
+
+  const handleFileBlur = () => {
+    setEditing({ type: null })
+  }
+
+  const handleFileKeyPress = (e: any) => {
+    if (e.key === CONSTANTS.ENTER) {
+      fileName && addFileOrFolder({ name: fileName, type: 'file', parent_folder_id: folder.id })
+      setFileName('')
+      setEditing({ type: null })
+    }
+  }
+
+  const handleFolderName = (e: any) => {
+    setFolderName(e.target.value.trim())
+  }
+
+  const handleFolderBlur = () => {
+    setEditing({ type: null })
+  }
+
+  const handleFolderKeyPress = (e: any) => {
+    if (e.key === CONSTANTS.ENTER) {
+      folderName &&
+        addFileOrFolder({ name: folderName, type: 'folder', parent_folder_id: folder.id })
+      setFolderName('')
+      setEditing({ type: null })
+    }
+  }
+
+  const handleOpenDeleteModal = (e: any) => {
+    e.stopPropagation()
+    dispatch(openDeleteFileModal({ ...folder }))
   }
 
   const toggleFolder = () => {
@@ -58,12 +135,27 @@ export const Folder: FC<{
         {isHovered && (
           <div className="folder_right">
             <MdEdit className="icon" />
-            <FaFile className="icon" />
-            <FaFolder className="icon" />
-            <TiDelete className="icon" />
+            <FaFile className="icon" onClick={openFileInput} />
+            <FaFolder className="icon" onClick={openFolderInput} />
+            <TiDelete className="icon" onClick={handleOpenDeleteModal} />
           </div>
         )}
       </div>
+      {editing.type === CONSTANTS.FOLDER_VALUE && (
+        <div className="editing">
+          <FaFolder className="folder_icon" />
+          <input
+            type="text"
+            className="edit_input"
+            placeholder={MSG.ENTER_FOLDER_NAME}
+            value={folderName}
+            onChange={handleFolderName}
+            onBlur={handleFolderBlur}
+            onKeyDown={handleFolderKeyPress}
+            autoFocus
+          />
+        </div>
+      )}
       {isOpen && (
         <div className="contents">
           {folder.children.map((child) =>
@@ -79,6 +171,21 @@ export const Folder: FC<{
               />
             )
           )}
+        </div>
+      )}
+      {editing.type === CONSTANTS.FILE_VALUE && (
+        <div className="editing">
+          <FileLogo filename={fileName} />
+          <input
+            type="text"
+            className="edit_input"
+            placeholder={MSG.ENTER_FILE_NAME}
+            value={fileName}
+            onChange={handleFileName}
+            onBlur={handleFileBlur}
+            onKeyDown={handleFileKeyPress}
+            autoFocus
+          />
         </div>
       )}
     </div>

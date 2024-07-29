@@ -56,7 +56,7 @@ export const FileLogo: FC<{ filename: string }> = ({ filename }) => {
     case EXT.SWIFT:
       return <img className="file_logo" src={SWIFT} alt="" />
     case EXT.TS:
-      return <img className="file_icon" src={TS} alt="" />
+      return <img className="file_logo" src={TS} alt="" />
     default:
       return <FaRegFile />
   }

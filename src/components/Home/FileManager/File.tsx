@@ -4,11 +4,10 @@ import { MdEdit } from 'react-icons/md'
 
 // local imports
 import './styles/File.scss'
-import { FileType } from '../../../interfaces/common'
+import { FileType } from '../../../interfaces/file'
 import { FileLogo } from '../../ui/FileLogo'
 import { openDeleteFileModal } from '../../../store/slices/modal'
 import { useAppDispatch } from '../../../hooks/redux'
-import { CONSTANTS } from '../../../helper/constants'
 
 export const File: FC<{ file: FileType; indent: number }> = ({ file, indent }) => {
   const [isHovered, setIsHovered] = useState<boolean>(false)
@@ -27,8 +26,8 @@ export const File: FC<{ file: FileType; indent: number }> = ({ file, indent }) =
     setIsHovered(false)
   }
 
-  const handleOpenModal = () => {
-    dispatch(openDeleteFileModal({ type: CONSTANTS.FILE_VALUE, file }))
+  const handleOpenDeleteModal = () => {
+    dispatch(openDeleteFileModal({ ...file }))
   }
 
   return (
@@ -45,7 +44,7 @@ export const File: FC<{ file: FileType; indent: number }> = ({ file, indent }) =
       {isHovered && (
         <div className="file_right">
           <MdEdit className="icon" />
-          <TiDelete className="icon" onClick={handleOpenModal} />
+          <TiDelete className="icon" onClick={handleOpenDeleteModal} />
         </div>
       )}
     </div>

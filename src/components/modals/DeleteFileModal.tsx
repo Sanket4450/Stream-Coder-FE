@@ -8,6 +8,7 @@ import { CONSTANTS } from '../../helper/constants'
 import './styles/DeleteFileModal.scss'
 import './styles/__global.scss'
 import { MSG } from '../../helper/messages'
+import { useDeleteFileMutation } from '../../api/file'
 
 const style: SxProps = {
   position: 'absolute' as 'absolute',
@@ -30,10 +31,27 @@ const style: SxProps = {
 export const DeleteFileModal = () => {
   const deleteFileModal = useAppSelector((state) => state.modal.deleteFile)
 
+  const [deleteFileApi] = useDeleteFileMutation()
+
   const dispatch = useAppDispatch()
 
   const handleCloseModal = () => {
     dispatch(closeDeleteFileModal())
+  }
+
+  const deleteFile = async () => {
+    try {
+      const response = await deleteFileApi({ id: deleteFileModal.data.id })
+
+      if (response.data?.success === CONSTANTS.SUCCESS_TRUE) {
+        console.log('file deleted successfully')
+        handleCloseModal()
+      } else {
+        console.log(MSG.SOMETHING_WENT_WRONG)
+      }
+    } catch (error) {
+      console.log(MSG.SOMETHING_WENT_WRONG)
+    }
   }
 
   return (
@@ -60,7 +78,9 @@ export const DeleteFileModal = () => {
             <button className="modal_cancel_btn" onClick={handleCloseModal}>
               {CONSTANTS.CANCEL}
             </button>
-            <button className="modal_delete_btn">{CONSTANTS.DELETE}</button>
+            <button className="modal_delete_btn" onClick={deleteFile}>
+              {CONSTANTS.DELETE}
+            </button>
           </div>
         </Box>
       </Modal>

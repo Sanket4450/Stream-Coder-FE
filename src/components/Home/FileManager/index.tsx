@@ -1,21 +1,19 @@
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { IoMdArrowDropright, IoMdArrowDropdown } from 'react-icons/io'
 import { FaFile, FaFolder } from 'react-icons/fa6'
 import { VscFiles } from 'react-icons/vsc'
-import { FaFileAlt } from 'react-icons/fa'
 
 // local imports
 import './styles/index.scss'
 import { CONSTANTS } from '../../../helper/constants'
-import { folderStructure } from '../../../data/folderStrcuture'
 import { File } from './File'
 import { Folder } from './Folder'
-import { FileType, FolderType } from '../../../interfaces/common'
+import { AddFileType, FileType, FolderType } from '../../../interfaces/file'
 import { MSG } from '../../../helper/messages'
-import { generateRandom8DigitID } from '../../../utils'
 import { FileLogo } from '../../ui/FileLogo'
 import { useAppSelector } from '../../../hooks/redux'
 import { DeleteFileModal } from '../../modals/DeleteFileModal'
+import { useAddFileMutation, useGetFolderStructureQuery } from '../../../api/file'
 
 export const FileManager: FC = () => {
   const deleteFileModal = useAppSelector((state) => state.modal.deleteFile)
@@ -23,8 +21,34 @@ export const FileManager: FC = () => {
   const [filesOpen, setFilesOpen] = useState<boolean>(true)
   const [unsplit, setUnsplit] = useState<boolean>(true)
   const [editing, setEditing] = useState<{ type: null | string }>({ type: null })
+  const [folderStructure, setFolderStructure] = useState<Array<FileType | FolderType>>([])
   const [fileName, setFileName] = useState<string>('')
   const [folderName, setFolderName] = useState<string>('')
+
+  const { data: structureData } = useGetFolderStructureQuery({})
+
+  const [addFileApi] = useAddFileMutation()
+
+  useEffect(() => {
+    if (structureData?.success) {
+      setFolderStructure(structureData.results)
+    }
+  }, [structureData])
+
+  const addFileOrFolder = async (data: AddFileType) => {
+    try {
+      const response = await addFileApi(data)
+      console.log(response)
+
+      if (response.data?.success === CONSTANTS.SUCCESS_TRUE) {
+        console.log('file added successfully')
+      } else {
+        console.log(MSG.SOMETHING_WENT_WRONG)
+      }
+    } catch (error: any) {
+      console.log(MSG.SOMETHING_WENT_WRONG)
+    }
+  }
 
   const openFileInput = () => {
     setEditing({ type: CONSTANTS.FILE_VALUE })
@@ -48,12 +72,7 @@ export const FileManager: FC = () => {
 
   const handleFileKeyPress = (e: any) => {
     if (e.key === CONSTANTS.ENTER) {
-      fileName &&
-        folderStructure.push({
-          id: generateRandom8DigitID(),
-          name: fileName,
-          type: CONSTANTS.FILE_VALUE,
-        })
+      fileName && addFileOrFolder({ name: fileName, type: 'file' })
       setFileName('')
       setEditing({ type: null })
     }
@@ -69,13 +88,7 @@ export const FileManager: FC = () => {
 
   const handleFolderKeyPress = (e: any) => {
     if (e.key === CONSTANTS.ENTER) {
-      folderName &&
-        folderStructure.push({
-          id: generateRandom8DigitID(),
-          name: folderName,
-          type: CONSTANTS.FOLDER_VALUE,
-          children: [],
-        })
+      folderName && addFileOrFolder({ name: folderName, type: 'folder' })
       setFolderName('')
       setEditing({ type: null })
     }

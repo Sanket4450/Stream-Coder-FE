@@ -5,8 +5,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 6px;
-    padding: 8px 12px;
 
     &:hover {
       cursor: pointer;
@@ -16,7 +14,9 @@
 
     .folder_left {
       display: flex;
-      gap: 8px;
+      flex-grow: 1;
+      gap: 5px;
+      padding: 8px 0;
 
       .folder_icon {
         color: $folder_bg;
@@ -26,17 +26,18 @@
       .name {
         margin: 0;
         font-size: 14px;
-        font-weight: 300;
+        font-weight: 400;
       }
     }
 
     .folder_right {
       display: flex;
       justify-content: flex-end;
-      gap: 10px;
+      padding: 8px 12px 8px 0;
 
       .icon {
-        font-size: 14px;
+        padding-left: 10px;
+        font-size: 16px;
         color: $light_text;
 
         &:hover {

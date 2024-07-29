@@ -37,18 +37,28 @@ export default () => {
     <main className="home">
       <div className="section_container">
         {width > CONSTANTS.SM && (
-          <div className={`home_left ${isFileSectionDragging ? 'dragging' : ''}`} style={{ width: fileSectionW }}>
+          <div
+            className={`home_left ${isFileSectionDragging ? 'dragging' : ''}`}
+            style={{ width: fileSectionW }}
+          >
             <FileManager />
           </div>
         )}
-        {width > CONSTANTS.SM && <SectionSplitter isDragging={isFileSectionDragging} {...fileSectionDragBarProps} />}
+        {width > CONSTANTS.SM && (
+          <SectionSplitter isDragging={isFileSectionDragging} {...fileSectionDragBarProps} />
+        )}
         <div className="home_right">
           <div className="editor">
             <TextEditor />
           </div>
-          {width > CONSTANTS.XL && <SectionSplitter isDragging={isTabsSectionDragging} {...tabsSectionDragBarProps} />}
           {width > CONSTANTS.XL && (
-            <div className={`tabs ${isTabsSectionDragging ? 'dragging' : ''}`} style={{ width: tabsSectionW }}>
+            <SectionSplitter isDragging={isTabsSectionDragging} {...tabsSectionDragBarProps} />
+          )}
+          {width > CONSTANTS.XL && (
+            <div
+              className={`tabs ${isTabsSectionDragging ? 'dragging' : ''}`}
+              style={{ width: tabsSectionW }}
+            >
               <Tabs />
             </div>
           )}

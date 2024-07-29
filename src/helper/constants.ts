@@ -14,6 +14,9 @@ export const CONSTANTS = {
   DARK: 'dark',
   LIGHT: 'light',
 
+  SUCCESS_TRUE: true,
+  SUCCESS_FALSE: false,
+
   // section initial widths (px)
   FILE_SECTION_INITIAL_WIDTH: 280,
   TABS_SECTION_INITIAL_WIDTH: 450,
@@ -47,4 +50,10 @@ export const CONSTANTS = {
 
   CANCEL: 'Cancel',
   DELETE: 'Delete',
+
+  AUTH_TOKEN: 'token',
+
+  CODES: {
+    UNAUTHORIZED: 401,
+  },
 }
