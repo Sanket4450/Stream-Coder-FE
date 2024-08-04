@@ -17,6 +17,11 @@ body {
   color: var(--selection_text);
 }
 
+.root_layout {
+  height: 100dvh;
+  overflow: hidden;
+}
+
 button {
   user-select: none;
 }

@@ -5,14 +5,14 @@ import Header from './components/Header'
 
 const App = () => {
   return (
-    <>
+    <main className="root_layout">
       <Header />
       <Routes>
         {routes.map((route) => (
           <Route key={route.path} path={route.path} element={<route.component />} />
         ))}
       </Routes>
-    </>
+    </main>
   )
 }
 

@@ -16,6 +16,8 @@ import REACT from '../../assets/svgs/react.svg'
 import RUBY from '../../assets/svgs/ruby.svg'
 import SWIFT from '../../assets/svgs/swift.svg'
 import TS from '../../assets/svgs/typescript.svg'
+import JSON from '../../assets/svgs/json.svg'
+import GIT from '../../assets/svgs/git.svg'
 import { EXT } from '../../helper/extensions'
 import './styles/FileLogo.scss'
 
@@ -39,6 +41,10 @@ export const FileLogo: FC<{ filename: string }> = ({ filename }) => {
       return <img className="file_logo" src={HTML} alt="" />
     case EXT.HTM:
       return <img className="file_logo" src={HTML} alt="" />
+    case EXT.EJS:
+      return <img className="file_logo" src={HTML} alt="" />
+    case EXT.PUG:
+      return <img className="file_logo" src={HTML} alt="" />
     case EXT.JAVA:
       return <img className="file_logo" src={JAVA} alt="" />
     case EXT.JS:
@@ -51,12 +57,18 @@ export const FileLogo: FC<{ filename: string }> = ({ filename }) => {
       return <img className="file_logo" src={REACT} alt="" />
     case EXT.TSX:
       return <img className="file_logo" src={REACT} alt="" />
-    case EXT.RUBY:
+    case EXT.RB:
+      return <img className="file_logo" src={RUBY} alt="" />
+    case EXT.RU:
       return <img className="file_logo" src={RUBY} alt="" />
     case EXT.SWIFT:
       return <img className="file_logo" src={SWIFT} alt="" />
     case EXT.TS:
       return <img className="file_logo" src={TS} alt="" />
+    case EXT.JSON:
+      return <img className="file_logo" src={JSON} alt="" />
+    case EXT.GIT:
+      return <img className="file_logo" src={GIT} alt="" />
     default:
       return <FaRegFile />
   }

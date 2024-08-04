@@ -10,6 +10,7 @@
   .drag_bar_dragging,
   &:hover {
     background-color: $primary_gray;
+    width: 6px;
   }
 
   .drag_bar_horizontal {

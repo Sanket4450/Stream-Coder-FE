@@ -2,6 +2,23 @@
 
 section.editor_section {
   height: 100%;
-  width: 100%;
-  // background-color: blue;
+  display: flex;
+  flex-grow: 1;
+
+  .editor_sidebar {
+    width: 38px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .run_code_btn {
+      color: $light_text;
+      margin: 10px 0 0 2px;
+
+      &:hover {
+        cursor: pointer;
+        color: $dark_text;
+      }
+    }
+  }
 }

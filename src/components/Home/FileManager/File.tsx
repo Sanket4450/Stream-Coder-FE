@@ -35,9 +35,8 @@ export const File: FC<{ file: FileType; indent: number }> = ({ file, indent }) =
       className="file"
       onMouseOver={handleMoustOver}
       onMouseOut={handleMoustOut}
-      style={indentStyle}
     >
-      <div className="file_left">
+      <div className="file_left" style={indentStyle}>
         <FileLogo filename={file.name} />
         <h4 className="name">{file.name}</h4>
       </div>

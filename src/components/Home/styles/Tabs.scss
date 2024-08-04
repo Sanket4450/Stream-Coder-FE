@@ -3,5 +3,28 @@
 section.tabs_section {
   height: 100%;
   width: 100%;
-  // background-color: rgb(230, 0, 255);
+
+  .tabs_navbar {
+    height: 36px;
+    display: flex;
+    border-bottom: 0.5px solid $secondary_gray;
+    user-select: none;
+
+    .tab {
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      font-size: 12px;
+      transition-duration: 0.2s;
+
+      &:hover {
+        cursor: pointer;
+        color: $dark_text;
+      }
+    }
+
+    .active_tab {
+      color: $dark_text;
+    }
+  }
 }

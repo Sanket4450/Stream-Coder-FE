@@ -3,7 +3,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --primary_bg: #151515;
+    --primary_bg: #131313;
     --secondary_bg: #1f1f1f;
     --secondary_hover_bg: #2d2d2d;
     --primary_gray: #343434;
@@ -19,7 +19,7 @@
 }
 
 :root[theme='dark'] {
-  --primary_bg: #151515;
+  --primary_bg: #131313;
   --secondary_bg: #1f1f1f;
   --secondary_hover_bg: #2d2d2d;
   --primary_gray: #343434;

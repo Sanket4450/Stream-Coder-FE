@@ -126,9 +126,8 @@ export const Folder: FC<{
         onMouseOver={handleMoustOver}
         onMouseOut={handleMoustOut}
         onClick={toggleFolder}
-        style={indentStyle}
       >
-        <div className="folder_left">
+        <div className="folder_left" style={indentStyle}>
           {isOpen ? <FaFolderOpen className="folder_icon" /> : <FaFolder className="folder_icon" />}
           <h4 className="name">{folder.name}</h4>
         </div>

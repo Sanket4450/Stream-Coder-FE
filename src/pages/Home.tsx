@@ -6,14 +6,23 @@ import './Home.scss'
 import { SectionSplitter } from '../components/ui/SectionSplitter'
 import { CONSTANTS } from '../helper/constants'
 import { useWindowSize } from '../hooks/useWindowSize'
+import { useEffect } from 'react'
+import { useAppDispatch } from '../hooks/redux'
+import { setTab } from '../store/slices/tab'
 
 export default () => {
   const { width } = useWindowSize()
 
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    dispatch(setTab(CONSTANTS.LIVE_PREVIEW_VALUE))
+  }, [])
+
   const {
     isDragging: isFileSectionDragging,
     position: fileSectionW,
-    splitterProps: fileSectionDragBarProps,
+    separatorProps: fileSectionDragBarProps,
   } = useResizable({
     axis: 'x',
     initial: CONSTANTS.FILE_SECTION_INITIAL_WIDTH,
@@ -24,7 +33,7 @@ export default () => {
   const {
     isDragging: isTabsSectionDragging,
     position: tabsSectionW,
-    splitterProps: tabsSectionDragBarProps,
+    separatorProps: tabsSectionDragBarProps,
   } = useResizable({
     axis: 'x',
     initial: CONSTANTS.TABS_SECTION_INITIAL_WIDTH,
@@ -35,35 +44,31 @@ export default () => {
 
   return (
     <main className="home">
-      <div className="section_container">
-        {width > CONSTANTS.SM && (
-          <div
-            className={`home_left ${isFileSectionDragging ? 'dragging' : ''}`}
-            style={{ width: fileSectionW }}
-          >
-            <FileManager />
-          </div>
-        )}
-        {width > CONSTANTS.SM && (
-          <SectionSplitter isDragging={isFileSectionDragging} {...fileSectionDragBarProps} />
-        )}
-        <div className="home_right">
-          <div className="editor">
-            <TextEditor />
-          </div>
-          {width > CONSTANTS.XL && (
-            <SectionSplitter isDragging={isTabsSectionDragging} {...tabsSectionDragBarProps} />
-          )}
-          {width > CONSTANTS.XL && (
-            <div
-              className={`tabs ${isTabsSectionDragging ? 'dragging' : ''}`}
-              style={{ width: tabsSectionW }}
-            >
-              <Tabs />
-            </div>
-          )}
+      {width > CONSTANTS.SM && (
+        <div
+          className={`home_left ${isFileSectionDragging ? 'dragging' : ''}`}
+          style={{ width: fileSectionW }}
+        >
+          <FileManager />
         </div>
+      )}
+      {width > CONSTANTS.SM && (
+        <SectionSplitter isDragging={isFileSectionDragging} {...fileSectionDragBarProps} />
+      )}
+      <div className="editor">
+        <TextEditor />
       </div>
+      {width > CONSTANTS.XL && (
+        <SectionSplitter isDragging={isTabsSectionDragging} {...tabsSectionDragBarProps} />
+      )}
+      {width > CONSTANTS.XL && (
+        <div
+          className={`tabs ${isTabsSectionDragging ? 'dragging' : ''}`}
+          style={{ width: tabsSectionW }}
+        >
+          <Tabs />
+        </div>
+      )}
     </main>
   )
 }

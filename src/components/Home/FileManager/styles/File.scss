@@ -12,6 +12,7 @@
   }
 
   .file_left {
+    width: 30%;
     display: flex;
     flex-grow: 1;
     gap: 8px;
@@ -21,16 +22,20 @@
       margin: 0;
       font-size: 14px;
       font-weight: 400;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
   }
 
   .file_right {
+    width: 56px;
     display: flex;
-    justify-content: flex-end;
-    padding: 8px 12px 8px 0;
+    justify-content: space-between;
+    padding: 8px 0;
 
     .icon {
-      padding-left: 10px;
+      width: 50%;
       font-size: 16px;
       color: $light_text;
 

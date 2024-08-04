@@ -1,45 +1,32 @@
 @import '../style/variables.scss';
 
 main.home {
-  height: calc(100svh - $header_height);
+  height: calc(100% - $header_height);
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow: hidden;
+  flex-grow: 1;
 
-  .section_container {
-    display: flex;
+  .home_left {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    transition: filter 0.2s ease-out, background-color 0.2s ease-out;
+    font-size: 16px;
+  }
+
+  .editor {
     flex-grow: 1;
-    width: 100%;
+    display: flex;
+    place-items: center;
+    transition: filter 0.2s ease-out, background-color 0.2s ease-out;
+    font-size: 16px;
+  }
 
-    .home_left {
-      flex-shrink: 0;
-      display: grid;
-      place-items: center;
-      transition: filter 0.2s ease-out, background-color 0.2s ease-out;
-      font-size: 16px;
-    }
-
-    .home_right {
-      display: flex;
-      flex-grow: 1;
-      width: calc(100% - 250px);
-
-      .editor {
-        flex-grow: 1;
-        display: grid;
-        place-items: center;
-        transition: filter 0.2s ease-out, background-color 0.2s ease-out;
-        font-size: 16px;
-      }
-
-      .tabs {
-        flex-shrink: 0;
-        display: grid;
-        place-items: center;
-        transition: filter 0.2s ease-out, background-color 0.2s ease-out;
-        font-size: 16px;
-      }
-    }
+  .tabs {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    transition: filter 0.2s ease-out, background-color 0.2s ease-out;
+    font-size: 16px;
   }
 }

@@ -14,6 +14,11 @@ export const CONSTANTS = {
   DARK: 'dark',
   LIGHT: 'light',
 
+  DARK_EDITOR_COLOR: '#131313',
+  LIGHT_EDITOR_COLOR: '#f4f4f4',
+
+  EDITOR_THEME: 'editortheme',
+
   SUCCESS_TRUE: true,
   SUCCESS_FALSE: false,
 
@@ -27,7 +32,7 @@ export const CONSTANTS = {
 
   // section maximum widths (px)
   FILE_SECTION_MAXIMUM_WIDTH: 400,
-  TABS_SECTION_MAXIMUM_WIDTH: 1000,
+  TABS_SECTION_MAXIMUM_WIDTH: 800,
 
   FILE_INDENTATION: 16,
 
